@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Character Counter</title>
+<style>
+:root{
+    --bg: #545454;
+    --txt: #d6d6d6;
+    --accent: #d366fa;
+
+}
+
+*{ 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html{
+    background: var(--bg);
+    color: var(--txt);
+}
+
+.container{
+    width: 100%;
+    height: 700px;
+    /*border: 5px solid red;*/
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#innerContainer{
+    width: 540px;
+    height: 595px;
+    border: 4px solid black;
+    padding-top: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+textarea{
+    resize: none;
+    width: 488px;
+    height: 464px;
+    align-self: center;
+    margin-left: 20px;
+}
+
+#statsContainer{
+    width: 520px;
+    height: 90px;
+    border: 1px solid black;
+    padding-top: 5px;
+    padding-left: 7px;
+    margin-top: 15px;
+    margin-left: 5px;
+    align-self: center;
+}
+</style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="innerContainer">
+                <textarea id="textarea"></textarea>
+
+                <div id="statsContainer">
+                    <span id="characters">Characters: </span>
+                </div>
+            </div>
+        </div>
+
+<script>
+//Elemenets
+let textarea = document.getElementById("textarea");
+const charsSpan = document.getElementById("characters");
+
+//Values
+let chars = 0;
+
+function getValues(){
+    chars = textarea.textLength;
+    charsSpan.innerText = `Characters: ${chars}`;
+}
+setInterval(getValues,1);
+
+</script>
+    </body>
+</html>
