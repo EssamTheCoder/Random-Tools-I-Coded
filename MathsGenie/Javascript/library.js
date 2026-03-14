@@ -95,7 +95,6 @@ function changeTheme(){
     }
 
     document.getElementById(`clock`).style.border = `7px solid var(--anchor)`;
-    document.getElementById(`:`).style.color = document.getElementById(`deficitSign`).style.color = document.getElementById(`deficit:`).style.color = `var(--anchor)`;
     updateClock();
     updateClock();
 }
