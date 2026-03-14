@@ -31,9 +31,10 @@ for(let i = 1; i <= 9; i++){
         
         if(localStorage.getItem(`MG: ${identifier}`) == `true`){
             lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <input id="${identifier}check" class="check ${identifier}" type="checkbox" checked> </td>`;
-        } else if(localStorage.getItem(`MG: ${identifier}`) == `false`){
+        } 
+        else{
             lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <input id="${identifier}check" class="check ${identifier}" type="checkbox"> </td>`;
-        }
+        } //(localStorage.getItem(`MG: ${identifier}`) == `false`)
 
 
         //Video
