@@ -14,27 +14,37 @@ let external = []
 for(let i = 1; i <= 9; i++){ //Getting the number of lessons for each grade level & PROPERLY setting it to the list
     numberOfLessonsInGrade[i] = await get(i,"name",true);
 
-    external[i-1] = numberOfLessonsInGrade[i]
+    external[i-1] = numberOfLessonsInGrade[i];
 
     if(i === 9){
-        external[i-1] = numberOfLessonsInGrade[i]
+        external[i-1] = numberOfLessonsInGrade[i];
         numberOfLessonsInGrade = external;
     };
 }
-for(let i = 1; i <= 9; i++){
 
+if (localStorage.length == 0){
+    for(let i = 1; i <= 9; i++){
+        for(let j = 1; j <= numberOfLessonsInGrade[i-1]; j++){
+            localStorage.setItem(`MG: ${i}-${j}`,`false`);
+        }
+    }
+}
+
+
+for(let i = 1; i <= 9; i++){
     for(let j = 1; j <= numberOfLessonsInGrade[i-1]; j++){ //All the lessons get defined here
         let identifier = `${i}-${j}`;
         let lessonString = ``; //initalises the table row for the current lesson
         let answerString = `` //initalises the answer cell of the current lesson
         lessonString += `<td id="${identifier}code" class="code ${identifier}">${identifier}</td>`; //adds the lesson code
         
-        if(localStorage.getItem(`MG: ${identifier}`) == `true`){
-            lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <input id="${identifier}check" class="check ${identifier}" type="checkbox" checked> </td>`;
-        } 
-        else{
-            lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <input id="${identifier}check" class="check ${identifier}" type="checkbox"> </td>`;
-        } //(localStorage.getItem(`MG: ${identifier}`) == `false`)
+        if(localStorage.getItem(`MG: ${identifier}`) == null){localStorage.setItem(`MG: ${identifier}`,`false`)}
+        lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <checkbox id="${identifier}check" class="check ${identifier}" aria-checked="${localStorage.getItem(`MG: ${identifier}`)}">`;
+
+        if(localStorage.getItem(`MG: ${identifier}`) == `true`){lessonString += `<i id="${identifier}i" class="bi bi-check2">`}
+        else if(localStorage.getItem(`MG: ${identifier}`) == `mixed`){lessonString += `<i id="${identifier}i" class="bi bi-dash">`}
+        else if(localStorage.getItem(`MG: ${identifier}`) == `false`){lessonString += `<i id="${identifier}i" class="bi bi-x">`}
+        lessonString += `</i></checkbox></td>`;
 
 
         //Video
@@ -45,7 +55,7 @@ for(let i = 1; i <= 9; i++){
 
             currentList = await get(i,"video",false);
             currentList = currentList[j-1];
-            for(let k = 0;k <= currentList.length;k++){
+            for(let k = 0; k <= currentList.length; k++){
                 lessonString += `<li><a class="${identifier} video" target="_blank" href="https://www.youtube.com/watch?v=${currentList[k]}">Video #${k+1}</a></li>`;
             }
             lessonString += `</ul></details></td>`;
@@ -81,17 +91,26 @@ for(let i = 1; i <= 9; i++){
 
     for(let j = 1;j <= numberOfLessonsInGrade[i-1];j++){
         let identifier = `${i}-${j}`;
-        document.getElementById(`${identifier}check`).addEventListener(`click`, () => {
-        console.log(`FAAAH this program man`)
-        if(localStorage.getItem(`MG: ${identifier}`) == `true`){
-            localStorage.removeItem(`MG: ${identifier}`);
-            localStorage.setItem(`MG: ${identifier}`,false);
-            document.getElementById(`${identifier}check`).checked = false;
-        } 
-        else {
-            localStorage.removeItem(`MG: ${identifier}`);
-            localStorage.setItem(`MG: ${identifier}`,true);
-            document.getElementById(`${identifier}check`).checked = true;
-        }});
+        const currentCheckbox = document.getElementById(`${identifier}check`);
+
+        currentCheckbox.addEventListener("click", () => {
+            if(currentCheckbox.ariaChecked == `false`){
+                localStorage.setItem(`MG: ${identifier}`,`mixed`);
+                currentCheckbox.ariaChecked = `mixed`;   
+                currentCheckbox.innerHTML = `<i id="${identifier}i" class="bi bi-dash"></i>`;
+            }
+
+            else if(currentCheckbox.ariaChecked == `mixed`){
+                localStorage.setItem(`MG: ${identifier}`,`true`);
+                currentCheckbox.ariaChecked = `true`;
+                currentCheckbox.innerHTML = `<i id="${identifier}i" class="bi bi-check2"></i>`;
+            }
+
+            else if(currentCheckbox.ariaChecked == `true`){
+                localStorage.setItem(`MG: ${identifier}`,`false`);
+                currentCheckbox.ariaChecked = `false`;
+                currentCheckbox.innerHTML = `<i id="${identifier}i" class="bi bi-x"></i>`;
+            }
+        });
     }
 }

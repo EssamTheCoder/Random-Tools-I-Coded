@@ -1,5 +1,3 @@
-$border: 1px solid var(--border);
-$marginLeft: 33px;
 :root{
     --bg: hsl(0,0%,90%);
     --nav-bg: hsl(0,0%,93%);
@@ -23,10 +21,10 @@ $marginLeft: 33px;
     background: var(--bg);
 }
 
+i{background-color: transparent}
+
 //Header
-h1{
-    color: var(--header);
-}
+h1{color: var(--header)}
 
 nav{
     width: 100%;
@@ -34,7 +32,8 @@ nav{
     position: fixed;
     top: -17px;
     left: 0;
-    border: 1px solid aliceblue;
+    border: 1px solid var(--border);
+    border-left: none;
     background: var(--nav-bg);
     
 
@@ -53,7 +52,7 @@ nav{
             float: left;
             text-align: center;
 
-            & a{background: inherit;}
+            & a{background: inherit}
 
             & .higher{
                 background: inherit;
@@ -67,9 +66,7 @@ nav{
         }
     }
 
-    & svg{
-        right: 5px;
-    }
+    & svg{right: 5px}
 }
 
 #themeButton{
@@ -179,12 +176,38 @@ a{
     }
 }
 
-input[type="checkbox"]{
-    background: var(--error);
+footer{color: var(--text)}
 
-    &:checked{
-        background: var(--higher-anchor-hover);
+checkbox{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+
+    --unchecked-gradient: linear-gradient(to top right, hsl(0, 54%, 36%),hsl(0, 61%, 48%));
+    --unchecked-gradient-hover: linear-gradient(to top left, hsl(0, 61%, 48%),hsl(0, 54%, 36%));
+
+    --mixed-gradient: linear-gradient(to top, hsl(31, 78%, 52%), hsl(20, 69%, 48%));
+    --mixed-gradient-hover: linear-gradient(to top right, hsl(20, 69%, 48%), hsl(31, 78%, 52%));
+
+    --checked-gradient: linear-gradient(to top right, hsl(100, 67%, 35%), hsl(136, 48%, 30%));
+    --checked-gradient-hover: linear-gradient(to top right, hsl(136, 48%, 30%), hsl(100, 67%, 35%));
+
+    &[aria-checked="false"]{
+        background: var(--unchecked-gradient);
+        &:hover{background: var(--unchecked-gradient-hover)}
+    }
+
+    &[aria-checked="mixed"]{
+        background: var(--mixed-gradient);
+        &:hover{background: var(--mixed-gradient-hover);}
+    }
+
+    &[aria-checked="true"]{
+        background: var(--checked-gradient);
+        &:hover{background: var(--checked-gradient-hover);}
     }
 }
-
-footer{ color: var(--text); }

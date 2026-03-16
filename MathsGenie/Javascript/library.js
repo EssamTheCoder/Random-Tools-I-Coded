@@ -1,9 +1,8 @@
 // All the funky functions
-export {get, lengthProcessing, getSpecific, updateClock,changeTheme}
+export {get, lengthProcessing, getSpecific, updateClock,changeTheme, intialiseCheckboxes}
 
 let theme = 1;
 function changeTheme(){
-    console.debug(theme)
     const root = document.querySelector(`:root`).style;
     const themeButton = document.getElementById(`themeButton`);
     if(theme == 1){
@@ -318,10 +317,7 @@ async function get(grade, attribute, length){ //Gets specified attribute from le
             console.error(`ParameterError | try putting in if you want the length or the list next time. | ${length}`);
         }
     }
-    catch(error){  //Error: Couldn`t fetch data from lessons.json
-        console.error(`FetchError | ${error} `);
-        throw error;
-    }
+    catch(error){throw error} //Error: Couldn`t fetch data from lessons.json
 }
 
 
@@ -364,5 +360,8 @@ async function getSpecific(grade,attribute,index){
     const processing = await get(grade,attribute,false);
 
     return processing[index];
+}
+
+function intialiseCheckboxes(){
 }
 

@@ -17,6 +17,10 @@
   background: var(--bg);
 }
 
+i {
+  background-color: transparent;
+}
+
 h1 {
   color: var(--header);
 }
@@ -27,7 +31,8 @@ nav {
   position: fixed;
   top: -17px;
   left: 0;
-  border: 1px solid aliceblue;
+  border: 1px solid var(--border);
+  border-left: none;
   background: var(--nav-bg);
 }
 nav ul {
@@ -156,15 +161,42 @@ a:hover {
   font-weight: 600;
 }
 
-input[type=checkbox] {
-  background: var(--error);
-}
-input[type=checkbox]:checked {
-  background: var(--higher-anchor-hover);
-}
-
 footer {
   color: var(--text);
+}
+
+checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  --unchecked-gradient: linear-gradient(to top right, hsl(0, 54%, 36%),hsl(0, 61%, 48%));
+  --unchecked-gradient-hover: linear-gradient(to top left, hsl(0, 61%, 48%),hsl(0, 54%, 36%));
+  --mixed-gradient: linear-gradient(to top, hsl(31, 78%, 52%), hsl(20, 69%, 48%));
+  --mixed-gradient-hover: linear-gradient(to top right, hsl(20, 69%, 48%), hsl(31, 78%, 52%));
+  --checked-gradient: linear-gradient(to top right, hsl(100, 67%, 35%), hsl(136, 48%, 30%));
+  --checked-gradient-hover: linear-gradient(to top right, hsl(136, 48%, 30%), hsl(100, 67%, 35%));
+}
+checkbox[aria-checked=false] {
+  background: var(--unchecked-gradient);
+}
+checkbox[aria-checked=false]:hover {
+  background: var(--unchecked-gradient-hover);
+}
+checkbox[aria-checked=mixed] {
+  background: var(--mixed-gradient);
+}
+checkbox[aria-checked=mixed]:hover {
+  background: var(--mixed-gradient-hover);
+}
+checkbox[aria-checked=true] {
+  background: var(--checked-gradient);
+}
+checkbox[aria-checked=true]:hover {
+  background: var(--checked-gradient-hover);
 }
 
 /*# sourceMappingURL=style.css.map */
