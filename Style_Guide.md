@@ -4,15 +4,24 @@ This is a comprehensive guide on how to style your code (purely optional btw), i
 First, see multilanguage stuff and then see the stuff that's specific to a single language.
 
 # Multilanguage Stuff
+
 ## Curly Braces
-When dealing with an if, while, for... statement and the code inside is just one line, do the following
 
-`example.js`
+### One-liners
+When dealing with an if, while, for or any other such statement and the code inside is just one line, do this:
+
 ```JavaScript
-if(x == y){return "Use only one line, and optionally, no semicolons"}
+if(x == y){return "Use only one line, optionally, no semicolon"}
 ```
-
 For longer one-liners, do it the normal way.
+
+### Statement Spacing
+When you write an if, while, for, try or any other statment that has the following syntax:
+```Javascript
+name(args){}
+```
+DO NOT space out the (regular brackets) at all.
+As for the {Curly Braces}, you may space them, that's up to you
 
 
 # Python
@@ -22,7 +31,6 @@ It is _heavily reccomended_ to use a main function and the `if __name__ == "__ma
 # Ending a style block
 If there are no child blocks withing the current block of code, you may optionally remove the last semicolon
 
-`example.scss`
 ```SCSS
 .stuff{
     width: 90px;
