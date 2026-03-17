@@ -28,6 +28,7 @@ As for the {Curly Braces}, you may space them, that's up to you
 It is _heavily reccomended_ to use a main function and the `if __name__ == "__main__":` idiom. Do with this information as you please.
 
 # Sass or Scss
+
 ## Ending a style block
 If there are no child blocks withing the current block of code, you may optionally remove the last semicolon
 

@@ -14,7 +14,7 @@ These are not requirements, but end goals, the project you make _should_ end dev
 ## How to Contribute
 Feel free to create any tool you want, just ensure it is in the correct directory (e.g. python projects go in the python repository).
 You can make a tool or update or fix one up
-There is a Style_Guide, your project should aim to follow it by end of development.
+There is a Style Guide, your project should aim to follow it by end of development.
 As of now, it is very minor, it shouldn't be hard to implement but at the end of the day, it is **optional**
 
 ## More Words 
