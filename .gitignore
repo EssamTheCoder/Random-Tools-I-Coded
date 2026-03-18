@@ -1,5 +1,8 @@
-share/*
 .vscode/settings.json
+
+#Python
+share/*
 Python/bin/*
 Python/include/*
 Python/lib/*
+Python/pyvenv.cfg
