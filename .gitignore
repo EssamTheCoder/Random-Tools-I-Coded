@@ -1,8 +1,6 @@
 .vscode/settings.json
+.DS_Store
 
 #Python
 share/*
-Python/bin/*
-Python/include/*
-Python/lib/*
-Python/pyvenv.cfg
+Python/.DS_Store

@@ -1,6 +1,5 @@
 print("Random Password Generator");
-print("V3.0");
-print("-- Removed use random module, replaced with secrets module.\n");
+print("V3.0\n");
 import secrets as sec
 from numpy import arange
 

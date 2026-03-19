@@ -27,14 +27,9 @@ def wordReverse(text:str):
 
 
 
-counter = 0
-while True:
-    counter += 1
 
-    if counter == 1:
-        print("---MODES---")
-    else:
-        print("\n---MODES---")
+while True:
+    print("---MODES---")
     print("1. FULL REVERSE - Parses the text as 1 string and reverses it.")
     print("2. WORD REVERSE - Seperates the string into individual words and reverses them individually.")
 

@@ -1,6 +1,6 @@
 print("Random Password Generator");
 print("V1.0\n");
-from random import choice as c
+from secrets import choice as c
 
 # Colour Lists
 reds = ['Red 0','Red 0',
