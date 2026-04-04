@@ -17,23 +17,36 @@ nav ul li a {
   margin-right: 20px;
 }
 
-.htmlPage:hover {
-  color: #ff691c;
+.html:hover {
+  color: #b35221;
 }
 
-.pyPage:hover {
-  color: #1c64ff;
+.py:hover {
+  color: #406ed2;
+}
+
+.sass:hover {
+  color: #a12ea1;
+}
+
+.js:hover {
+  color: #f9c804;
+}
+
+.py:hover, .js:hover, .html:hover, .sass:hover {
+  font-weight: 800;
 }
 
 #rticBanner {
-  width: 98%;
+  width: 99%;
   height: 50%;
   background: var(--banner-gradient);
   border: var(--banner-border);
   border-radius: 10px;
   margin: 50px 0 0 0;
   position: absolute;
-  left: 1%;
+  left: 5px;
+  right: 0;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -58,31 +71,33 @@ nav ul li a {
 #toolPositioner {
   width: 97%;
   height: 300px;
-  border: 1px solid red;
   position: absolute;
-  left: 1.5%;
+  left: 10%;
   top: 52%;
 }
 
 #toolContainer {
   width: 100%;
   height: 100%;
-  border: var(--banner-border);
-  border-bottom: none;
   position: absolute;
-  top: 0;
+  top: -38px;
   user-select: none;
+  transition: bottom ease 0.25s;
+  overflow: visible;
 }
 #toolContainer .tool {
   width: 17%;
   height: 250px;
   border: var(--tool-border);
   border-radius: 20px;
-  margin: 12px 0 0 2%;
+  margin: 12px 0 0 0.5%;
   display: inline-block;
   overflow: hidden;
 }
-#toolContainer .tool .title {
+#toolContainer .tool:hover {
+  transform: translateY(-5px);
+}
+#toolContainer .tool .tool-title {
   width: 100%;
   height: 24%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -91,44 +106,44 @@ nav ul li a {
   display: inline-flex;
   position: relative;
 }
-#toolContainer .tool .title p {
+#toolContainer .tool .tool-title p {
   position: absolute;
   bottom: -25px;
   line-height: 2;
+  margin-left: 15px;
 }
-#toolContainer .tool .title p:hover {
+#toolContainer .tool .tool-title p:hover {
   font-weight: 600;
 }
-#toolContainer .tool .title .lang {
-  margin-top: 2px;
+#toolContainer .tool .tool-title .tool-lang {
+  margin-top: 5px;
   color: hsl(0, 0%, 50%);
   font-size: 0.5em;
   font-weight: lighter;
 }
-#toolContainer .tool .title .lang:hover {
+#toolContainer .tool .tool-title .tool-lang:hover {
   font-weight: normal;
 }
-#toolContainer .tool .title .lang::before {
-  content: "(";
-}
-#toolContainer .tool .title .lang::after {
+#toolContainer .tool .tool-title .tool-lang::after {
   content: ")";
 }
-#toolContainer .tool .title p, #toolContainer .tool .title .lang {
+#toolContainer .tool .tool-title .tool-lang::before {
+  content: "(";
   margin-left: 5px;
 }
-#toolContainer .tool .desc {
+#toolContainer .tool .tool-title p, #toolContainer .tool .tool-title .lang {
+  margin-left: 5px;
+}
+#toolContainer .tool .tool-desc {
   width: 100%;
   height: 20%;
+  border-top: 0.5px solid var(--tool-border);
   display: flex;
-  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
 }
-#toolContainer .tool .desc p {
-  margin-left: 1px;
-}
-#toolContainer .tool .toolimg {
-  width: 100%;
-  height: 56%;
+#toolContainer .tool .tool-desc p {
+  margin-left: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

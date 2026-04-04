@@ -1,5 +1,5 @@
 print("Alphabet Flipper");
-print("Verison V1.1\n");
+print("Verison V1.2\n");
 
 def __main__() -> None:
     while True:
@@ -15,7 +15,7 @@ def __main__() -> None:
                     out += currentChar.lower()
             else:
                 out += currentChar
-        print(out)
+        print(f"{out}\n")
 
 if __name__ == "__main__":
     __main__()

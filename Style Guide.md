@@ -36,9 +36,7 @@ As for the {Curly Braces}, you may space them, that's up to you
 
 
 # Python
-It is _heavily_ reccomended to use a main function and the `if __name__ == "__main__":` idiom. Do with this information as you please.
-
-# Sass or Scss
+It is _heavily_ reccomended to use a main function and the `if __name__ == "__main__":` idiom.
 
 ## Ending a style block
 If there are no child blocks withing the current block of code, you may optionally remove the last semicolon:
@@ -54,7 +52,7 @@ If there are no child blocks withing the current block of code, you may optional
 ```
 
 ## Spacing Stuff Out
-When writing indented code, just remember to space out the style blocks for the child elements, this includes pseudoclasses of the main element
+When writing indented code, seperate the code for the element from any indented style blocks:
 
 ```SCSS
 a{
@@ -69,8 +67,8 @@ a{
 ```
 
 ## One-Liners
-When using one-liners, follow the code above, but also, use them like normal style definitions, no spacing required. 
-Do remember to add a semicolon the end of the main style definition if you're not including it because without it the compiler may return an error
+When using one-liners, do not space them out like normal. 
+Do remember to add a semicolon the end of the main style definition if you're not including it to avoid errors.
 
 ```SCSS
 .stuff{
@@ -82,3 +80,27 @@ Do remember to add a semicolon the end of the main style definition if you're no
     & .otherstuff{background: #fff}
 }
 ```
+
+## Mixing One-Liners & More-Than-One-Liners
+Attach your one-liners to the end of the main style expression as seen above.
+Then, add a whitespace followed by your other more-than-one-liner style expressions
+
+```SCSS
+.stuff{
+    width: 90px;
+    height: 100px;
+    border: 1px solid beige;
+    border-radius: 20px;
+    background: linear-gradient(#f00,#0f0,#00f);
+    & .otherstuff{background: #fff}
+
+    & .otherotherstuff{
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        color: #ff0
+    }
+}
+```
+
+**NOTE: do this only when it is appropriate**
