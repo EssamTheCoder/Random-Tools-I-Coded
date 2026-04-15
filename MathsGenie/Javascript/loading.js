@@ -1,12 +1,9 @@
 //All the automatic loading (I am not coding all that HTML by hand)
-import {get, lengthProcessing, getSpecific, updateClock, changeTheme} from './library.js'
+import {get, lengthProcessing, getSpecific, changeTheme} from './library.js'
 
 //Setting up the clock
 changeTheme();
 document.getElementById(`themeButton`).addEventListener(`click`,changeTheme);
-
-updateClock();
-document.getElementById(`clock`).addEventListener(`click`,updateClock);
 
 //Number of Lessons in Each Table (used in main for loop)
 let numberOfLessonsInGrade = []

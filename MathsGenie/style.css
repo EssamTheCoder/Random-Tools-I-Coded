@@ -73,36 +73,6 @@ nav svg {
   right: 0;
 }
 
-#clock {
-  width: 20%;
-  height: 100px;
-  background: var(--clock-bg);
-  border: 7px solid var(--anchor);
-  border-radius: 20px;
-  padding: 5px;
-  margin: 80px 0 40px 40%;
-  position: relative;
-  text-align: center;
-  user-select: none;
-}
-#clock span {
-  background: transparent;
-  color: var(--anchor);
-  font-family: monospace;
-  font-size: 4rem;
-}
-#clock #deficitContainer {
-  background: transparent;
-  font-family: monospace;
-  position: absolute;
-  bottom: 7px;
-  right: 7px;
-}
-#clock #deficitContainer span {
-  color: var(--anchor);
-  font-size: 1rem;
-}
-
 main {
   align-items: center;
 }
@@ -133,15 +103,7 @@ table td:hover {
   font-weight: 600;
 }
 table td ul {
-  list-style: lower-greek;
-}
-table td li a {
-  color: var(--text);
-  margin-bottom: 3px;
-}
-table td li a:hover {
-  color: var(--header);
-  font-weight: 600;
+  list-style: lower-alpha;
 }
 
 a {

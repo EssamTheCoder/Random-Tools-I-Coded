@@ -2,6 +2,7 @@
     --banner-gradient: radial-gradient(at bottom, #f2abff, #e88fff 10%, #cdabff, #f6cfff 85%);
     --banner-border: 2px solid #e88fff;
     --tool-border: 2px solid #d843fd;
+    --tool-hover-border: 2px solid #8401a4;
 }
 
 *{ 
@@ -75,6 +76,7 @@ nav ul li{
     user-select: none;
     transition: bottom ease 0.25s;
     overflow: visible;
+    & a{color: inherit}
 
     & .tool{
         width: 17%;
@@ -84,13 +86,17 @@ nav ul li{
         margin: 12px 0 0 0.5%;
         display: inline-block;
         overflow: hidden;
-        &:hover{transform: translateY(-5px)}
+
+        &:hover{
+            border: var(--tool-hover-border);
+            transform: translateY(-5px);
+        }
 
         & .tool-title{
             width: 100%;
             height: 24%;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             font-size: 1.75em;
             display: inline-flex;
             position: relative;
@@ -100,7 +106,8 @@ nav ul li{
                 bottom: -25px;
                 line-height: 2;
                 margin-left: 15px;
-                &:hover{font-weight: 600}
+                font-weight: 600;
+                &:hover{font-weight: 800}
             }
 
             & .tool-lang{

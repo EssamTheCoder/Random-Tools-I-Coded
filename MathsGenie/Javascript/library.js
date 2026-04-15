@@ -1,8 +1,8 @@
 // All the funky functions
-export {get, lengthProcessing, getSpecific, updateClock,changeTheme, intialiseCheckboxes}
+export {intialiseCheckboxes}
 
 let theme = 1;
-function changeTheme(){
+export function changeTheme(){
     const root = document.querySelector(`:root`).style;
     const themeButton = document.getElementById(`themeButton`);
     if(theme == 1){
@@ -92,177 +92,10 @@ function changeTheme(){
         root.setProperty(`--border`, `hsl(0,0%,0%)`);
         root.setProperty(`--error`, `hsl(0,86%,44%)`);
     }
-
-    document.getElementById(`clock`).style.border = `7px solid var(--anchor)`;
-    updateClock();
-    updateClock();
 }
 
-let toggleClock = false;
-function updateClock() {
-    const hrs = document.getElementById(`hrs`);
-    const mins = document.getElementById(`mins`);
-    const clock = document.getElementById(`clock`);
 
-    const deficitHrs = document.getElementById(`defictHrs`);
-    const deficitMins = document.getElementById(`deficitMins`);
-    const deficitSign = document.getElementById(`deficitSign`);
-    
-    const accentColour = getComputedStyle(document.querySelector(`:root`)).getPropertyValue(`--anchor`);
-    const errorColour = getComputedStyle(document.querySelector(`:root`)).getPropertyValue(`--error`);
-
-    //CLOCK TOGGLING
-    if(toggleClock === false){ //shows clock & gets time
-        toggleClock = true;
-        hrs.style.display = mins.style.display = deficitHrs.style.display = deficitMins.style.display = document.getElementById(`deficit:`).style.display = deficitSign.style.display = `inline`;
-        document.getElementById(`:`).style.color = deficitSign.style.color = accentColour;
-        clock.style.border = `7px solid ${accentColour}`;
-
-        clockData();
-        deficitData();
-    }
-    else{ //hides clock and removes time
-        toggleClock = false;
-        document.getElementById(`:`).style.color = `hsl(0, 0%, 28%)`;
-        hrs.style.display = mins.style.display = deficitHrs.style.display = deficitMins.style.display = document.getElementById(`deficit:`).style.display = `none`;
-        deficitSign.style.color = `hsl(0, 0%, 28%)`;
-        deficitSign.innerText = `±`;
-    }
-
-
-    "//{" //Sub-Functions of updateClock()
-    function clockData(){ //Gets the time data and sets innerText | Returns: null
-        fetch(`JSON/time.json`)
-        .then(result => result.ok ? result.json() : Promise.reject(`HTTP ${result.status}`))
-        .then(data => {
-            //VARIABLE DEFINITIONS
-            let addHours = 0;
-            let totalHrs = Number(data.hrs);
-            let totalMins = Number(data.mins.thirtyMins)*30 + Number(data.mins.fifteenMins)*15 + Number(data.mins.tenMins)*10 + Number(data.mins.fiveMins)*5;
-
-            //MINUTE OVERFLOW
-            if( !(totalMins < 60) ){ //Checks if totalMins ≥ 60
-                addHours = check60(totalMins);
-                totalHrs += addHours;
-                totalMins -= addHours*60;
-            }
-            else if( !(totalMins > -60) ){ //Checks if totalMins ≤ -60 (for negative overflow)
-                addHours = check60(Math.abs(totalMins) );
-                addHours = -addHours;
-                totalHrs += addHours;
-                totalMins -= addHours*60;
-            }
-
-
-            //NEGATIVE VALUES
-            if(totalHrs < 0){
-                hrs.style.color = errorColour;
-                totalHrs = Math.abs(totalHrs);
-            }
-
-            if(totalMins < 0){
-                mins.style.color = errorColour;
-                totalMins = Math.abs(totalMins);
-            }
-
-            if(totalMins < 0 && totalMins < 0){ //Modifications for if both hrs & mins are <0
-                document.getElementById(`:`).style.color = errorColour;
-                clock.style.border = `1px solid ${errorColour}`;
-            }
-
-            //PADDING
-            if(totalHrs < 10){
-                totalHrs = `0${totalHrs}`; //pads hours value
-            }
-
-            if(totalMins < 10){
-                totalMins = `0${totalMins}`; //pads minutes value
-            }
-
-            //SETTING TEXT
-            hrs.innerText = totalHrs;
-            mins.innerText = totalMins;
-
-        })
-        .catch(error => { //Error: couldn`t fetch data form JSON file
-            console.error(`Error fetching data from time.json | ${error} `);
-            hrs.innerText = mins.innerText = `..`;
-            hrs.background = mins.background = errorColour;
-            clock.style.border = `7px solid ${errorColour}`;
-            clock.style.background = `hsl(0,80%,15%)`;
-        });
-    };
-
-    function deficitData(){
-        fetch(`JSON/time.json`)
-        .then(response => response.json())
-        .then(data => {
-            let dAddHours = 0;
-            let dTotalHrs = Number(data.total.hrs) - Number(data.hrs);
-            let dTotalMins = (Number(data.total.mins.thirtyMins) - Number(data.mins.thirtyMins))*30 + (Number(data.total.mins.fifteenMins) - Number(data.mins.fifteenMins))*15 + (Number(data.total.mins.tenMins) - Number(data.mins.tenMins))*10 + (Number(data.total.mins.fiveMins) - Number(data.mins.fiveMins))*5;
-            deficitSign.innerText = `+`;
-
-            //MINUTE OVERFLOW
-            if( !(dTotalMins < 60) ){
-                dAddHours += check60(dTotalMins);
-                dTotalHrs += dAddHours;
-                dTotalMins -= dAddHours*60;
-            }
-
-            if( !(dTotalMins > -60) ){
-                dAddHours = -check60( Math.abs( Number(dTotalMins) ) );
-                dTotalHrs += dAddHours;
-                dTotalMins -= dAddHours*60;
-            }
-
-            //NEGATIVE VALUES
-            if( dTotalHrs < 0 || dTotalMins < 0){
-                document.getElementById(`deficitContainer`).style.color = errorColour;
-                deficitSign.innerText = `-`;
-            }
-
-            //PADDING
-            if(dTotalHrs < 10){
-                dTotalHrs = `0${dTotalHrs}`; //pad the deficit hrs value
-            }
-            if(dTotalMins < 10){
-                dTotalMins = `0${dTotalMins}`
-            }
-
-            //SETTING TEXT
-            deficitHrs.innerText = dTotalHrs;
-            deficitMins.innerText = dTotalMins;
-        })
-        .catch(error => {
-            deficitHrs.innerText = deficitMins.innerText = `??`;
-            deficitHrs.style.color = deficitMins.style.color = errorColour;
-            document.getElementById(`deficitContainer`).style.background = `hsl(0,80%,15%)`;
-        })
-    };
-
-    function check60(number){
-        let counter;
-
-        function inner(num){
-            //Base Cases
-            if(num < 60){counter = 0;}
-            else if(num === 60){counter = 1;}
-
-            //Recursion
-            else{
-                counter += 1 + check60(num - 60); // ✨Recursion✨
-            }
-
-            return counter;
-        }
-
-        counter = 0; //Resets the counter for future calls
-        return inner(number);
-    };
-    `//}`
-}
-
-async function get(grade, attribute, length){ //Gets specified attribute from lessons.json. I added some flexibility thogh
+export async function get(grade, attribute, length){ //Gets specified attribute from lessons.json. I added some flexibility thogh
     try{
         attribute = String(attribute); //for ease of access
 
@@ -322,7 +155,7 @@ async function get(grade, attribute, length){ //Gets specified attribute from le
 
 
 //Sub-Functions of get()
-function lengthProcessing(list){
+export function lengthProcessing(list){
     let counter = list.length; //Presets the length
     let currentList = list; //Sets the list
 
@@ -362,6 +195,9 @@ async function getSpecific(grade,attribute,index){
     return processing[index];
 }
 
-function intialiseCheckboxes(){
+async function intialiseCheckboxes(){
+    for(let i = 1; i <= 9; i++){
+        jLimit = await get(i,"name",true);
+        for(let j = 1; j <= jLimit; j++){localStorage.setItem(`${i}-${j}`,"false")}
+    }
 }
-

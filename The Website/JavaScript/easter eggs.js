@@ -15,5 +15,6 @@ banner.addEventListener("click", () => {
         root.setProperty(`--banner-gradient`,`radial-gradient(at bottom, #f2abff, #e88fff 10%, #cdabff, #f6cfff 85%)`);
         root.setProperty(`--banner-border`,`2px solid #e88fff`);
         root.setProperty(`--tool-border`,`2px solid #d843fd`);
+        root.setProperty(`--tool-hover--border`,`2px solid #a40101`);
     }
 });

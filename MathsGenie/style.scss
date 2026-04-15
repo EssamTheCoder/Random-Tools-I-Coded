@@ -77,44 +77,10 @@ nav{
     right: 0;
 }
 
-#clock{
-    width: 20%;
-    height: 100px;
-    background: var(--clock-bg);
-    border: 7px solid var(--anchor);
-    border-radius: 20px;
-    padding: 5px;
-    margin: 80px 0 40px 40%;
-    position: relative;
-    text-align: center;
-    user-select: none;
-
-    & span{
-        background: transparent;
-        color: var(--anchor);
-        font-family: monospace;
-        font-size: 4rem;
-    }
-
-    & #deficitContainer{
-        background: transparent;
-        font-family: monospace;
-        position: absolute;
-        bottom: 7px;
-        right: 7px;
-
-        & span{
-            color: var(--anchor);
-            font-size: 1rem;
-        }
-    }
-}
-
 //Main
 main{
     align-items: center;
-
-    & section h1{margin-left: 30%;}
+    & section h1{margin-left: 30%}
 }
 
 table{
@@ -141,18 +107,7 @@ table{
             font-weight: 600;
         }
 
-        & ul{
-            list-style: lower-greek;
-        }
-        & li a{
-            color: var(--text);
-            margin-bottom: 3px;
-
-            &:hover{
-                color: var(--header);
-                font-weight: 600;
-            }
-        }
+        & ul{list-style: lower-alpha}
     }
 }
 
