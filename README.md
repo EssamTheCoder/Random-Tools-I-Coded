@@ -8,7 +8,7 @@ These tools should aim to:
 - Be as compact and optimised as possible,
 - Look as good as possible,
 - Be readable,
-- Follow the Style Guide.
+- Require no (or little) external libraries
 These are not requirements, but end goals, the project you make _should_ end development acheiving one of if not most of these goals.
 
 ## How to Contribute

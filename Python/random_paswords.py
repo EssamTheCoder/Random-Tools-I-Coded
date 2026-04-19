@@ -1,43 +1,33 @@
 print("Random Password Generator");
 print("V3.0\n");
 import secrets as sec
-from numpy import arange
+
 
 #Lists
-upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
-        'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-
-lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-asciiChars = ["!", ""","#", "$", "%", "&", """, "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", 
-		    "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"]
-
-nonAsciiChars = ['¡','€','£','¢','∞','§','¶','•','ª','º',"“",'‘','…',
-                'æ','«','≤','≥','÷','œ','∑','´','®','¥','¨','^','ø','π','å','ß','∂',
-                'ƒ','©','˙','∆','˚','¬','≈','ç','√','∫','~','µ','±',
-                '–','≠']
-
+upper = [chr(i) for i in range(63,91)]
+lower = [chr(i) for i in range(97,123)]
+nums = [chr(i) for i in range(48,58)]
 space = [" "]
 
-lists = [upper,lower,nums,asciiChars,nonAsciiChars,space]
+asciiChars = [chr(i) for i in set(range(33,48)) | set(range(58,64)) | set(range(91,97)) | set(range(123,127))]
+extendedAscii = [chr(i) for i in set(range(161, 173)) | set(range(174, 256))]
 
-def passwordTime(length: int,chars:bool,ascii: bool,spaces: bool):
+lists = [upper,lower,nums,asciiChars,extendedAscii,space]
+
+def passwordTime(length:int, chars:bool, ascii:bool, spaces:bool):
     #Checks & Inital Changes
     removedLists = []
     if chars == False:
         lists.remove(asciiChars)
         removedLists.append(asciiChars)
     if ascii == False:
-        lists.remove(nonAsciiChars)
-        removedLists.append(nonAsciiChars)
+        lists.remove(extendedAscii)
+        removedLists.append(extendedAscii)
     if spaces == False:
         lists.remove(space)
         removedLists.append(space)
     
-    lastChar = 0
+    lastChar = "\0"
     password = ""
 
     for p in range(0,length):
@@ -72,7 +62,7 @@ def lengthProcessing(length: str) -> None:
     if length.isdecimal() == True:
         value = int(length)
     elif length in ["surprise me","random"]:
-        value = sec.choice(arange(20,500,step=1))
+        value = sec.choice(list(range(20,501)))
     elif len(length) == 0:
         value = 20
     else:
@@ -81,7 +71,7 @@ def lengthProcessing(length: str) -> None:
     specialCharacters = boolProcessing(input("Would you like to use special characters? (Y/n) "),True)
     asciiOnly = False
     if specialCharacters == True:
-        asciiOnly = boolProcessing(input("Would you like to include non-ASCII special characters? (Y/n) "),True)
+        asciiOnly = boolProcessing(input("Would you like to include extended ASCII special characters? (Y/n) "),True)
 
     supportsSpaces =  boolProcessing(input("Would you like spaces in your password? (y/N) "),False)
 
@@ -93,9 +83,8 @@ def lengthProcessing(length: str) -> None:
     
 
 
-def __main__() -> None:
-    inp = lengthProcessing(input("How long do you want your password? "))
-    print(f"{inp}\n")
+def main() -> None:
+    print(f"{lengthProcessing(input("How long do you want your password? "))}\n")
 
-while True:
-    __main__()
+while __name__ == '__main__':
+    main()

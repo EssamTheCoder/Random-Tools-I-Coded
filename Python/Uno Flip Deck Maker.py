@@ -1,11 +1,11 @@
 #For anything that you can't test in the ipynb
 print("Uno Flip Deck Generator");
-print("Version A2.0\n");
+print("Version A2.0");
+print("External Libraries: colorama\n")
 
 from secrets import choice
 from typing import Collection
-from numpy import arange as arng
-from colorama import init, Fore, Back
+from colorama import init, Fore
 init()
 
 def main(sep:str) -> None:
@@ -13,7 +13,6 @@ def main(sep:str) -> None:
     Prints a fully randomised deck of Uno Flip Cards, sperated by a user-selected string. Defaults to "->" if the user presses enter without entering a string
 
     :sep: The sperator that sperates the light card from the dark one when printing
-
     :return: None
     """
     sep = "->" if not sep else sep

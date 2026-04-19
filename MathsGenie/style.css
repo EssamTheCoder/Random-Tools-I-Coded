@@ -1,7 +1,6 @@
 :root {
   --bg: hsl(0,0%,90%);
   --nav-bg: hsl(0,0%,93%);
-  --clock-bg: linear-gradient(to bottom right, hsl(0,0%,90%) 70%, hsl(0,0%,98%) );
   --header: hsl(0,0%,10%);
   --text: hsl(0,0%,20%);
   --anchor: hsl(26, 93%, 55%);
@@ -81,20 +80,22 @@ main section h1 {
 }
 
 table {
-  border: 1px solid var(--border);
   border-collapse: collapse;
   border-radius: 10px;
   margin: 0 0 50px 30%;
 }
+table tr {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 21px;
+}
 table th {
   color: var(--header);
-  border: 1px solid var(--border);
+  border-bottom: 4px solid var(--border);
   margin-right: 20px;
 }
 table td {
   color: var(--text);
-  border: 1px solid var(--border);
-  margin-left: 7px;
+  border-bottom: 1px solid var(--border);
   padding: 7px;
 }
 table td:hover {
@@ -104,6 +105,16 @@ table td:hover {
 }
 table td ul {
   list-style: lower-alpha;
+}
+table .code {
+  border-right: 1px solid var(--border);
+}
+table .questionbox {
+  width: 20px;
+  border-left: 1px solid var(--border);
+}
+table .video {
+  padding: 0 5px 0 5px;
 }
 
 a {
@@ -123,18 +134,17 @@ a:hover {
   font-weight: 600;
 }
 
-footer {
-  color: var(--text);
-}
-
 checkbox {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border: 1px solid var(--border);
   border-radius: 4px;
   color: #fff;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   --unchecked-gradient: linear-gradient(to top right, hsl(0, 54%, 36%),hsl(0, 61%, 48%));
   --unchecked-gradient-hover: linear-gradient(to top left, hsl(0, 61%, 48%),hsl(0, 54%, 36%));
   --mixed-gradient: linear-gradient(to top, hsl(31, 78%, 52%), hsl(20, 69%, 48%));
@@ -159,6 +169,10 @@ checkbox[aria-checked=true] {
 }
 checkbox[aria-checked=true]:hover {
   background: var(--checked-gradient-hover);
+}
+
+footer {
+  color: var(--text);
 }
 
 /*# sourceMappingURL=style.css.map */

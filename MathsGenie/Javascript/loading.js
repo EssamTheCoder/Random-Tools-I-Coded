@@ -29,12 +29,11 @@ if (localStorage.length == 0){
 
 
 for(let i = 1; i <= 9; i++){
-    for(let j = 1; j <= numberOfLessonsInGrade[i-1]; j++){ //All the lessons get defined here
+    for(let j = 1; j <= numberOfLessonsInGrade[i-1]; j++){
         let identifier = `${i}-${j}`;
-        let lessonString = ``; //initalises the table row for the current lesson
-        let answerString = `` //initalises the answer cell of the current lesson
-        lessonString += `<td id="${identifier}code" class="code ${identifier}">${identifier}</td>`; //adds the lesson code
-        
+        let lessonString = ``;
+        let answerString = ``;
+
         if(localStorage.getItem(`MG: ${identifier}`) == null){localStorage.setItem(`MG: ${identifier}`,`false`)}
         lessonString += `<td id="${identifier}checkbox" class ="${identifier} checkbox"> <checkbox id="${identifier}check" class="check ${identifier}" aria-checked="${localStorage.getItem(`MG: ${identifier}`)}">`;
 
@@ -42,6 +41,8 @@ for(let i = 1; i <= 9; i++){
         else if(localStorage.getItem(`MG: ${identifier}`) == `mixed`){lessonString += `<i id="${identifier}i" class="bi bi-dash">`}
         else if(localStorage.getItem(`MG: ${identifier}`) == `false`){lessonString += `<i id="${identifier}i" class="bi bi-x">`}
         lessonString += `</i></checkbox></td>`;
+
+        lessonString += `<td id="${identifier}code" class="code ${identifier}">${identifier}</td>`;
 
 
         //Video
@@ -65,8 +66,8 @@ for(let i = 1; i <= 9; i++){
         //PDFs
         currentList = await get(i,"pdf",false);
         if(!(identifier === `3-16`)){
-            lessonString += `<td class="${identifier}"><a id="${identifier}question" class="question ${identifier}" target="_blank" href="https:/www.mathsgenie.co.uk/resources/${currentList[j-1]}.pdf">Questions</a></td>`;
-            answerString += `<td class="${identifier}"><a id="${identifier}answer" class="answer ${identifier}" target="_blank" href="https:/www.mathsgenie.co.uk/resources/${currentList[j-1]}ans.pdf">Answers</a></td>`;
+            lessonString += `<td id="${identifier}questionbox" class="questionbox ${identifier}"><a id="${identifier}question" class="question ${identifier}" target="_blank" href="https:/www.mathsgenie.co.uk/resources/${currentList[j-1]}.pdf">Questions</a></td>`;
+            answerString += `<td id=""${identifier}answerbox"" class="answerbox ${identifier}"><a id="${identifier}answer" class="answer ${identifier}" target="_blank" href="https:/www.mathsgenie.co.uk/resources/${currentList[j-1]}ans.pdf">Answers</a></td>`;
         } 
         else{
             lessonString += `<td id="${identifier}question" class="question ${identifier}"><details class="${identifier}"><summary class="${identifier}">Question Sheets</summary><ul>`;
